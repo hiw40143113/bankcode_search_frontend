@@ -1,0 +1,19 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.subtitle {
+  color: rgb(182, 163, 175);
+  font-weight: lighter;
+  font-size: 1.4rem;
+  padding: 1rem 0 0 1.3rem;
+}
+.subtitle-link {
+  text-decoration: none;
+  color: inherit;
+}
+.title {
+  font-weight: 100;
+  font-size: 4rem;
+  padding-left: 1rem;
+}
