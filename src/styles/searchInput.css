@@ -4,12 +4,21 @@
   box-sizing: border-box;
 }
 
+section {
+  display: flex;
+}
+
 .bank {
   display: flex;
   flex-direction: column;
 }
 
-.bank-name {
+.branch {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-title {
   padding-left: 1rem;
   font-size: 20px;
   margin: 5px 0;
@@ -17,7 +26,7 @@
 
 .search-input-container {
   position: relative;
-  width: 330px;
+  width: 300px;
   margin-left: 1rem;
 }
 
@@ -32,7 +41,7 @@
   border: 2px solid rgb(74, 150, 236);
 }
 
-.bank-input {
+.input {
   flex: 1;
   padding: 10px;
   font-size: 20px;
@@ -91,5 +100,5 @@
 .input-hint {
   margin: 5px 0 0 1rem;
   color: rgb(182, 163, 175);
-  font-size: 19px;
+  font-size: 18px;
 }
