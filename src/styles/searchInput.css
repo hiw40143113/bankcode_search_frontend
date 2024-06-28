@@ -167,9 +167,11 @@ input:disabled {
 
 .button-area {
   margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
-.button-area button {
+.button-area .research {
   border: 1px solid black;
   border-radius: 8px;
   background-color: white;
@@ -177,4 +179,18 @@ input:disabled {
   font-size: 20px;
   padding: 0.3rem 0.5rem;
   cursor: pointer;
+}
+
+.button-area .copy-url {
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  color: white;
+  background-color: #2887fb;
+}
+
+.button-area .copy-url:hover {
+  background-color: #70b0ff;
 }

@@ -147,7 +147,10 @@ const SearchInput = () => {
         </div>
         <div className="button-area">
           <a href="/">
-            <button>重新查詢</button>
+            <button className="research">重新查詢</button>
+          </a>
+          <a href="#">
+            <button className="copy-url">複製本頁連結</button>
           </a>
         </div>
       </div>
