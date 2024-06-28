@@ -72,6 +72,7 @@ const SearchInput = () => {
       setSearchBankTerm(`${bankCode} ${bankName}`);
       setSelectedBranch(null);
       setSearchBranchTerm("");
+      setBranchDetails(null);
       setIsBankDropdown(false);
     } catch (error) {
       console.error("Error fetching branches:", error);
@@ -85,7 +86,6 @@ const SearchInput = () => {
       );
       setBranchDetails(response.data);
       setSelectedBranch(branchId);
-      setSearchBranchTerm(`${branchName}`);
       setSearchBranchTerm(branchName);
       setIsBranchDropdown(false);
       console.log(response.data);
@@ -119,73 +119,111 @@ const SearchInput = () => {
     );
   };
 
+  const BranchDetails = ({ data }) => {
+    const copyBranchCode = () => {
+      navigator.clipboard.writeText(data.code);
+    };
+
+    return (
+      <div className="detail-container">
+        <div className="detail-info">
+          <div className="detail-area">
+            <h2>
+              {data.bank_name}({data.bank_code}){data.name}
+            </h2>
+            <div className="branch-code">
+              <p>分行代碼: {data.code}</p>
+              <button onClick={copyBranchCode}>複製代碼</button>
+            </div>
+            <p>地址: {data.address}</p>
+            <p>電話: {data.phone}</p>
+          </div>
+          <div className="data-source">
+            <p>
+              資料來源:
+              <a href="https://data.gov.tw/dataset/6041">政府資料開放平台</a>
+            </p>
+          </div>
+        </div>
+        <div className="button-area">
+          <a href="/">
+            <button>重新查詢</button>
+          </a>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section>
-      <div className="bank">
-        <h2 className="search-title">銀行名稱</h2>
-        <div className="search-input-container">
-          <div className="input-container">
-            <input
-              className="input"
-              type="text"
-              value={searchBankTerm}
-              onChange={handleBankInputChange}
-              placeholder="請輸入關鍵字或銀行代碼..."
-              onClick={toggleBankDropdown}
-              onBlur={() => setIsBankDropdown(false)}
-            />
-            <button
-              onClick={toggleBankDropdown}
-              onBlur={() => setIsBankDropdown(false)}
-              className="dropdown-toggle-button"
-            >
-              ▼
-            </button>
+      <div className="filter-area">
+        <div className="bank">
+          <h2 className="search-title">銀行名稱</h2>
+          <div className="search-input-container">
+            <div className="input-container">
+              <input
+                className="input"
+                type="text"
+                value={searchBankTerm}
+                onChange={handleBankInputChange}
+                placeholder="請輸入關鍵字或銀行代碼..."
+                onClick={toggleBankDropdown}
+                onBlur={() => setIsBankDropdown(false)}
+              />
+              <button
+                onClick={toggleBankDropdown}
+                onBlur={() => setIsBankDropdown(false)}
+                className="dropdown-toggle-button"
+              >
+                ▼
+              </button>
+            </div>
+            {isBankDropdown && (
+              <Dropdown
+                data={filteredBanks}
+                onSelect={handleBankSelect}
+                selectedId={selectedBank}
+                displayKey="code name"
+              />
+            )}
           </div>
-          {isBankDropdown && (
-            <Dropdown
-              data={filteredBanks}
-              onSelect={handleBankSelect}
-              selectedId={selectedBank}
-              displayKey="code name"
-            />
-          )}
+          <p className="input-hint">可使用下拉選單或直接輸入關鍵字查詢</p>
         </div>
-        <p className="input-hint">可使用下拉選單或直接輸入關鍵字查詢</p>
-      </div>
-      <div className="branch">
-        <h2 className="search-title">分行名稱</h2>
-        <div className="search-input-container">
-          <div className="input-container">
-            <input
-              className="input"
-              type="text"
-              value={searchBranchTerm}
-              onChange={handleBranchInputChange}
-              placeholder="請選擇分行名稱"
-              onClick={toggleBranchDropdown}
-              onBlur={() => setIsBranchDropdown(false)}
-              disabled={!selectedBank}
-            />
-            <button
-              onClick={toggleBranchDropdown}
-              onBlur={() => setIsBranchDropdown(false)}
-              className="dropdown-toggle-button"
-              disabled={!selectedBank}
-            >
-              ▼
-            </button>
+        <div className="branch">
+          <h2 className="search-title">分行名稱</h2>
+          <div className="search-input-container">
+            <div className="input-container">
+              <input
+                className="input"
+                type="text"
+                value={searchBranchTerm}
+                onChange={handleBranchInputChange}
+                placeholder="請選擇分行名稱"
+                onClick={toggleBranchDropdown}
+                onBlur={() => setIsBranchDropdown(false)}
+                disabled={!selectedBank}
+              />
+              <button
+                onClick={toggleBranchDropdown}
+                onBlur={() => setIsBranchDropdown(false)}
+                className="dropdown-toggle-button"
+                disabled={!selectedBank}
+              >
+                ▼
+              </button>
+            </div>
+            {isBranchDropdown && (
+              <Dropdown
+                data={filteredBranches}
+                onSelect={handleBranchSelect}
+                selectedId={selectedBranch}
+                displayKey="name"
+              />
+            )}
           </div>
-          {isBranchDropdown && (
-            <Dropdown
-              data={filteredBranches}
-              onSelect={handleBranchSelect}
-              selectedId={selectedBranch}
-              displayKey="name"
-            />
-          )}
         </div>
       </div>
+      {branchDetails && <BranchDetails data={branchDetails} />}
     </section>
   );
 };

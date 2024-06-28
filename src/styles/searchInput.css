@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-section {
+.filter-area {
   display: flex;
 }
 
@@ -26,7 +26,7 @@ section {
 
 .search-input-container {
   position: relative;
-  width: 300px;
+  min-width: 300px;
   margin-left: 1rem;
 }
 
@@ -105,4 +105,76 @@ input:disabled {
   margin: 5px 0 0 1rem;
   color: rgb(182, 163, 175);
   font-size: 18px;
+}
+
+.detail-container {
+  margin: 1rem;
+}
+
+.detail-info {
+  background-color: #f0fdf4;
+  padding: 1rem 0.8rem;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-area h2 {
+  font-size: 42px;
+  font-weight: 400;
+}
+
+.detail-area .branch-code {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.detail-area .branch-code button {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: #22c55e;
+  color: white;
+  font-size: 20px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+}
+
+.detail-area .branch-code button:hover {
+  background-color: #56e38a;
+}
+
+.detail-area p {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.data-source {
+  align-self: self-end;
+  font-size: 18px;
+}
+
+.data-source a {
+  text-decoration: none;
+  color: black;
+}
+
+.button-area {
+  margin-top: 1rem;
+}
+
+.button-area button {
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
 }
