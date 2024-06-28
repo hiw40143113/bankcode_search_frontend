@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/searchInput.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SearchInput = () => {
   const [banks, setBanks] = useState([]);
@@ -14,19 +15,49 @@ const SearchInput = () => {
   const [searchBranchTerm, setSearchBranchTerm] = useState("");
   const [selectedBranch, setSelectedBranch] = useState(null);
   const [branchDetails, setBranchDetails] = useState(null);
+  const navigate = useNavigate();
+  const { bank_code, branch_code, bank_name, branch_name } = useParams();
 
-  // fetch data
+  // fetch init data
   useEffect(() => {
-    const fetchBanks = async () => {
+    const fetchInitialData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/banks/");
-        setBanks(response.data);
-        setFilteredBanks(response.data);
+        const bankResponse = await axios.get(
+          "http://localhost:8000/api/banks/"
+        );
+        setBanks(bankResponse.data);
+        setFilteredBanks(bankResponse.data);
+
+        // 處理非"/"網址的網頁資料
+        if (bank_code && branch_code && bank_name && branch_name) {
+          const selectedBank = bankResponse.data.find(
+            (bank) => bank.code === bank_code
+          );
+          if (selectedBank) {
+            setSearchBankTerm(`${bank_code} ${decodeURIComponent(bank_name)}`);
+            setSelectedBank(selectedBank.id);
+
+            const branchResponse = await axios.get(
+              `http://localhost:8000/api/banks/${selectedBank.id}/branches/`
+            );
+            setBranches(branchResponse.data);
+            setFilteredBranches(branchResponse.data);
+
+            const selectedBranch = branchResponse.data.find(
+              (branch) => branch.code === branch_code
+            );
+            if (selectedBranch) {
+              setSearchBranchTerm(selectedBranch.name);
+              setSelectedBranch(selectedBranch.id);
+              setBranchDetails(selectedBranch);
+            }
+          }
+        }
       } catch (error) {
-        console.error("Error fetching banks:", error);
+        console.error("Error fetching initial data:", error);
       }
     };
-    fetchBanks();
+    fetchInitialData();
   }, []);
 
   const toggleBankDropdown = () => {
@@ -84,11 +115,16 @@ const SearchInput = () => {
       const response = await axios.get(
         `http://localhost:8000/api/branches/${branchId}/`
       );
+      const { code, name, bank_name, bank_code } = response.data;
       setBranchDetails(response.data);
       setSelectedBranch(branchId);
       setSearchBranchTerm(branchName);
       setIsBranchDropdown(false);
-      console.log(response.data);
+      navigate(
+        `/${bank_code}/${code}/${encodeURIComponent(
+          bank_name
+        )}/${encodeURIComponent(name)}`
+      );
     } catch (error) {
       console.error("Error fetching branch details:", error);
     }
@@ -124,6 +160,10 @@ const SearchInput = () => {
       navigator.clipboard.writeText(data.code);
     };
 
+    const copyPageUrl = () => {
+      navigator.clipboard.writeText(window.location.href);
+    };
+
     return (
       <div className="detail-container">
         <div className="detail-info">
@@ -149,9 +189,9 @@ const SearchInput = () => {
           <a href="/">
             <button className="research">重新查詢</button>
           </a>
-          <a href="#">
-            <button className="copy-url">複製本頁連結</button>
-          </a>
+          <button className="copy-url" onClick={copyPageUrl}>
+            複製本頁連結
+          </button>
         </div>
       </div>
     );

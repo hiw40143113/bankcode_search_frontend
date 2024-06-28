@@ -6,6 +6,15 @@
 
 .filter-area {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .filter-area {
+    flex-direction: row;
+  }
 }
 
 .bank {
@@ -19,7 +28,6 @@
 }
 
 .search-title {
-  padding-left: 1rem;
   font-size: 20px;
   margin: 5px 0;
 }
@@ -27,7 +35,6 @@
 .search-input-container {
   position: relative;
   min-width: 300px;
-  margin-left: 1rem;
 }
 
 .input-container {
@@ -102,7 +109,7 @@ input:disabled {
 }
 
 .input-hint {
-  margin: 5px 0 0 1rem;
+  margin-top: 5px;
   color: rgb(182, 163, 175);
   font-size: 18px;
 }
@@ -133,10 +140,18 @@ input:disabled {
 
 .detail-area .branch-code {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
+@media (min-width: 768px) {
+  .detail-area .branch-code {
+    flex-direction: row;
+  }
+}
+
 .detail-area .branch-code button {
+  width: fit-content;
   border: 1px solid black;
   border-radius: 8px;
   background-color: #22c55e;
