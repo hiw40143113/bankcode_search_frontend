@@ -50,6 +50,10 @@ section {
   outline: none;
 }
 
+input:disabled {
+  background-color: #f0f0f0;
+}
+
 .dropdown-toggle-button {
   padding: 8px;
   font-size: 14px;

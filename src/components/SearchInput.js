@@ -13,6 +13,7 @@ const SearchInput = () => {
   const [isBranchDropdown, setIsBranchDropdown] = useState(false);
   const [searchBranchTerm, setSearchBranchTerm] = useState("");
   const [selectedBranch, setSelectedBranch] = useState(null);
+  const [branchDetails, setBranchDetails] = useState(null);
 
   // fetch data
   useEffect(() => {
@@ -70,9 +71,26 @@ const SearchInput = () => {
       setSelectedBank(bankId);
       setSearchBankTerm(`${bankCode} ${bankName}`);
       setSelectedBranch(null);
+      setSearchBranchTerm("");
       setIsBankDropdown(false);
     } catch (error) {
       console.error("Error fetching branches:", error);
+    }
+  };
+
+  const handleBranchSelect = async (branchId, branchCode, branchName) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/branches/${branchId}/`
+      );
+      setBranchDetails(response.data);
+      setSelectedBranch(branchId);
+      setSearchBranchTerm(`${branchName}`);
+      setSearchBranchTerm(branchName);
+      setIsBranchDropdown(false);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching branch details:", error);
     }
   };
 
@@ -161,8 +179,8 @@ const SearchInput = () => {
           {isBranchDropdown && (
             <Dropdown
               data={filteredBranches}
-              // onSelect={handleBankSelect}
-              //   selectedId={selectedBank}
+              onSelect={handleBranchSelect}
+              selectedId={selectedBranch}
               displayKey="name"
             />
           )}
