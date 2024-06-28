@@ -71,7 +71,6 @@ const SearchInput = () => {
       setSearchBankTerm(`${bankCode} ${bankName}`);
       setSelectedBranch(null);
       setIsBankDropdown(false);
-      setIsBranchDropdown(true);
     } catch (error) {
       console.error("Error fetching branches:", error);
     }
@@ -119,6 +118,7 @@ const SearchInput = () => {
             />
             <button
               onClick={toggleBankDropdown}
+              onBlur={() => setIsBankDropdown(false)}
               className="dropdown-toggle-button"
             >
               ▼
@@ -151,7 +151,9 @@ const SearchInput = () => {
             />
             <button
               onClick={toggleBranchDropdown}
+              onBlur={() => setIsBranchDropdown(false)}
               className="dropdown-toggle-button"
+              disabled={!selectedBank}
             >
               ▼
             </button>
