@@ -4,7 +4,7 @@
 
 本專案是一個結合 Django 和 React 前端技術的 Web 應用，旨在提供使用者可以方便查詢臺灣銀行代碼。因本專案架構為前後端分離，需搭配後端專案一起使用。
 
-後端 Django repo:`https://github.com/hiw40143113?tab=repositories`
+後端 Django repo:`https://github.com/hiw40143113/bankcode_search_backend`
 
 ## 目錄
 
@@ -21,7 +21,7 @@
 
 ## 技術棧
 
-- React
+- Django
 - axios
 
 ## 功能
