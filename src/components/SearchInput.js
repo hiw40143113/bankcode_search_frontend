@@ -17,14 +17,13 @@ const SearchInput = () => {
   const [branchDetails, setBranchDetails] = useState(null);
   const navigate = useNavigate();
   const { bank_code, branch_code, bank_name, branch_name } = useParams();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // fetch init data
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const bankResponse = await axios.get(
-          "http://localhost:8000/api/banks/"
-        );
+        const bankResponse = await axios.get(`${apiUrl}/api/banks/`);
         setBanks(bankResponse.data);
         setFilteredBanks(bankResponse.data);
 
@@ -38,7 +37,7 @@ const SearchInput = () => {
             setSelectedBank(selectedBank.id);
 
             const branchResponse = await axios.get(
-              `http://localhost:8000/api/banks/${selectedBank.id}/branches/`
+              `${apiUrl}/api/banks/${selectedBank.id}/branches/`
             );
             setBranches(branchResponse.data);
             setFilteredBranches(branchResponse.data);
@@ -95,7 +94,7 @@ const SearchInput = () => {
   const handleBankSelect = async (bankId, bankCode, bankName) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/banks/${bankId}/branches/`
+        `${apiUrl}/api/banks/${bankId}/branches/`
       );
       setBranches(response.data);
       setFilteredBranches(response.data);
@@ -112,9 +111,7 @@ const SearchInput = () => {
 
   const handleBranchSelect = async (branchId, branchCode, branchName) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8000/api/branches/${branchId}/`
-      );
+      const response = await axios.get(`${apiUrl}/api/branches/${branchId}/`);
       const { code, name, bank_name, bank_code } = response.data;
       setBranchDetails(response.data);
       setSelectedBranch(branchId);
