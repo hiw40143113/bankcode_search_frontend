@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# Bankcode-search
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 簡介
 
-## Available Scripts
+本專案是一個結合 Django 和 React 前端技術的 Web 應用，旨在提供使用者可以方便查詢臺灣銀行代碼。因本專案架構為前後端分離，需搭配後端專案一起使用。
 
-In the project directory, you can run:
+後端 Django repo:`https://github.com/hiw40143113?tab=repositories`
 
-### `npm start`
+## 目錄
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Bankcode-search](#Bankcode-search)
+  - [簡介](#簡介)
+  - [目錄](#目錄)
+  - [技術棧](#技術棧)
+  - [功能](#功能)
+  - [安裝與運行](#安裝與運行)
+    - [先決條件](#先決條件)
+    - [安裝步驟](#安裝步驟)
+  - [使用範例](#使用範例)
+  - [作者資訊](#作者資訊)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 技術棧
 
-### `npm test`
+- React
+- axios
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 功能
 
-### `npm run build`
+- 使用者可搜尋或選擇銀行及分行名稱產生分行詳細資訊
+- 詳細資訊有複製代碼或複製網址按鈕提供使用者快速紀錄
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 安裝與運行
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 先決條件
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js (14.x 或更高)
+- 已將本專案 Django 後端設置完畢並運行
 
-### `npm run eject`
+### 安裝步驟
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. 使用 `npm install` 安裝本專案運行時所需套件
+2. 設置環境變數：
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   在專案根目錄中創建一個 `.env` 文件，並依照 `.env.example` 添加對應的本機端內容
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 使用範例
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+你可以使用 `npm start` 指令運行專案並在瀏覽器中訪問 `http://127.0.0.1:3000/` 來查看應用並進行操作。
 
-## Learn More
+## 作者資訊
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 吳軒逸  
+  [GitHub](https://github.com/hiw40143113)
