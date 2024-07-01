@@ -47,7 +47,7 @@
 
 你可以使用 `npm start` 指令運行專案並在瀏覽器中訪問 `http://127.0.0.1:3000/` 來查看應用並進行操作。
 
-成品展示網址:`https://main--keen-taiyaki-4d7744.netlify.app/
+成品展示網址:`https://main--keen-taiyaki-4d7744.netlify.app/`
 
 ## 作者資訊
 
