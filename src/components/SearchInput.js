@@ -203,7 +203,7 @@ const SearchInput = () => {
             <div className="input-container">
               <input
                 className="input"
-                type="text"
+                type="search"
                 value={searchBankTerm}
                 onChange={handleBankInputChange}
                 placeholder="請輸入關鍵字或銀行代碼..."
@@ -235,7 +235,7 @@ const SearchInput = () => {
             <div className="input-container">
               <input
                 className="input"
-                type="text"
+                type="search"
                 value={searchBranchTerm}
                 onChange={handleBranchInputChange}
                 placeholder="請選擇分行名稱"
